@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Pensamiento computacional y arquitectura de computadoras</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Manuel Vargas" />
+    <meta name="date" content="2022-09-03" />
+    <script src="libs/header-attrs-2.13/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title-slide, right, top
+background-image: url(img/turing-machine.png)
+background-size: contain
+
+.right-column[
+# Pensamiento computacional y arquitectura de computadoras
+
+Manuel Vargas&lt;br&gt;
+Universidad de Costa Rica
+]
+
+.palegrey[.left[.footnote[&lt;small&gt;Representación artística de una [máquina de Turing](https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing). Fuente: [Porao](https://commons.wikimedia.org/wiki/File:Turing_Machine.png).&lt;/small&gt;]]]
+
+---
+
+# Contenidos
+
+- ### Pensamiento computacional
+  - #### Resolución de problemas mediante computadoras
+  - #### Principios fundamentales
+  - #### Algoritmos
+
+- ### Arquitectura de computadoras
+  - #### Historia
+  - #### Arquitectura de von Neumann
+  - #### Código binario
+  - #### Lenguajes de programación
+  
+---
+# Computadora
+
+--
+### *"__Máquina electrónica__ que, mediante determinados __programas__, permite almacenar y tratar información, y resolver __problemas de diversa índole__."* ([Diccionario de la lengua española](https://dle.rae.es/computador#A4hIGQC)).
+
+--
+### *"__Máquina electrónica digital programable__ que ejecuta una serie de comandos para __procesar__ los datos de __entrada__, obteniendo convenientemente información que posteriormente se envía a las unidades de __salida__."* ([Wikipedia](https://es.wikipedia.org/wiki/Computadora)).
+
+--
+### *"A computer is a __machine or device__ that performs processes, calculations and operations based on instructions provided by a software or hardware __program__. It has the ability to accept data (__input__), __process__ it, and then produce __outputs__."* ([Techopedia](https://www.techopedia.com/definition/4607/computer)).
+
+---
+
+# Características de las computadoras
+
+--
+### Son **programables**: su funcionamiento puede modificarse sin alterar sus componentes físicos, especificando secuencias de instrucciones (ej. cálculos, operaciones lógicas) que se ejecutan automáticamente.
+
+--
+### Estas secuencias de instrucciones son denominadas **programas**.
+
+--
+### Los programas trabajan con un modelo de **entrada - procesamiento - salida**:
+- #### Reciben datos de **entrada** del usuario o alguna otra fuente.
+- #### Los **procesan** mediante cálculos o algún otro tipo de operación.
+- #### Como resultado del procesamiento, generan **salidas**.
+
+---
+
+# ¿Por qué utilizamos computadoras?
+
+--
+### Pueden ayudar a resolver problemas.
+
+--
+&lt;img src="img/resolucion-problemas-computadoras.png" height="150" /&gt;
+
+--
+### La forma de solucionar un problema debe expresarse de forma tal que pueda ser implementada en una computadora.
+
+---
+# Ejemplos de problemas que pueden resolverse con ayuda de computadoras (y otras máquinas)
+
+### - Numéricos (ej. [aritméticos](https://es.wikipedia.org/wiki/Stepped_Reckoner))
+### - Criptográficos (ej. [descodificación de mensajes](https://es.wikipedia.org/wiki/Bombe))
+### - Militares (ej. [cálculo de trayectorias de proyectiles](https://es.wikipedia.org/wiki/ENIAC))
+### - Científicos
+### - Financieros
+### - Empresariales
+### - Recreativos
+
+---
+# Problemas geoespaciales - ejemplo
+
+--
+&lt;figure&gt;
+  &lt;img src="img/johnsnow-map.jpg" height="400" /&gt;
+&lt;/figure&gt;
+
+--
+&lt;figcaption&gt;
+  &lt;small&gt;&lt;a href="https://www.theguardian.com/news/datablog/2013/mar/15/john-snow-cholera-map"&gt;Mapa de John Snow&lt;/a&gt; que muestra los casos de cólera durante la &lt;a href="https://es.wikipedia.org/wiki/Epidemia_de_c%C3%B3lera_de_Broad_Street"&gt;epidemia de Broad Street&lt;/a&gt;, Londres, en 1854.  Puede apreciarse la cercanía de muchos casos a la bomba de agua contaminada en la intersección de Broad Street y Cambridge Street. Fuente: &lt;a href="https://en.wikipedia.org/wiki/File:Snow-cholera-map-1.jpg"&gt;John Snow&lt;/a&gt;.&lt;/small&gt;
+&lt;/figcaption&gt; 
+
+---
+# Otros ejemplos de problemas geoespaciales
+
+- ### ¿Cuáles son las zonas prioritarias para la conservación de una especie?
+- ### ¿Cuál es la mejor ubicación para un local comercial?
+- ### ¿Cuáles son las áreas más vulnerables a desastres naturales?
+- ### ¿Cuáles son los lugares en los que una epidemia tiene más probabilidades de impactar?
+- ### ¿Cuál es la ruta más corta entre dos sitios?
+
+---
+
+# Pensamiento computacional
+
+--
+- ### Es un enfoque para la resolución de problemas basado en conceptos y métodos de las ciencias de la computación.
+
+--
+- ### Puede ser aplicado en muchas áreas, no solo en computación.
+
+--
+- ### Se considera una de las destrezas fundamentales del siglo XXI.
+
+--
+- ### Investigación en pensamiento computacional:
+  - #### [Papert, 1996](http://www.papert.org/articles/AnExplorationintheSpaceofMathematicsEducations.html)
+  - #### [Wing, 2006](https://www.cs.cmu.edu/~15110-s13/Wing06-ct.pdf)
+
+---
+
+# Conceptos fundamentales del pensamiento computacional
+
+--
+- ### **Descomposición**: división de un problema en subproblemas más pequeños.
+
+--
+- ### **Reconocimiento de patrones**: búsqueda de similitudes de un problema a resolver, con problemas ya resueltos.
+
+--
+- ### **Abstracción**: identificación de la información que se necesita y filtrado de la que no se necesita para resolver un problema.
+
+--
+- ### **Algoritmos**: descripción, paso por paso, de la solución a un problema.
+
+---
+
+# Descomposición - ejemplo
+## Escritura de un documento
+
+--
+.pull-left[
+### Documento sin secciones
+&lt;figure&gt;
+  &lt;img src="img/descomposicion-informe-completo.png" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;Fuente: &lt;a href="https://www.coursera.org/learn/computational-thinking-problem-solving"&gt;Universidad de Pennsylvania&lt;/a&gt;.&lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+--
+.pull-right[
+### Documento con secciones
+&lt;figure&gt;
+  &lt;img src="img/descomposicion-informe-secciones.png" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;Fuente: &lt;a href="https://www.coursera.org/learn/computational-thinking-problem-solving"&gt;Universidad de Pennsylvania&lt;/a&gt;.&lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+---
+
+# Reconocimiento de patrones - ejemplo
+## Patrones de diseño de software
+
+--
+.pull-left[
+- "*Cada patrón describe un problema que ocurre infinidad de veces en nuestro entorno, así como la solución al mismo, de tal modo que podemos utilizar esta solución un millón de veces más adelante sin tener que volver a pensarla otra vez.*" ([Christopher Alexander, 1977](https://laptrinhx.com/a-pattern-language-3372046788/))
+
+- Los patrones de diseño de software alcanzaron gran popularidad con la publicación del libro [*Design Patterns: Elements of Reusable Object-Oriented Software* (1994)](https://en.wikipedia.org/wiki/Design_Patterns), en el cual se documentan [23 patrones de diseño de software](https://en.wikipedia.org/wiki/Design_Patterns#Patterns_by_type).
+]
+
+--
+.pull-right[
+&lt;figure&gt;
+  &lt;img src="img/model-view-controller.png" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;Diagrama de interacciones en el patrón de diseño de software denominado &lt;a href="https://es.wikipedia.org/wiki/Modelo%E2%80%93vista%E2%80%93controlador"&gt;Modelo-Vista-Controlador o &lt;em&gt;Model-View-Controller&lt;/em&gt; (MVC)&lt;/a&gt;. Fuente: &lt;a href="https://commons.wikimedia.org/wiki/File:MVC-Process.svg"&gt;RegisFrey&lt;/a&gt;.&lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+---
+
+# Abstracción - ejemplo
+## Selección de atributos de un conjunto de datos
+
+--
+.pull-left[
+### Atributos generales de una persona
+- Nombre
+- Edad
+- Ingreso mensual
+- Historial académico
+- Pasatiempos
+- Color favorito
+- Estatura
+- Peso
+- Historial médico
+- ...
+]
+
+--
+.pull-right[
+#### Atributos a considerar para la BD de una universidad
+- Nombre
+- Edad
+- Historial académico
+- ...
+
+#### Atributos a considerar para la BD de una red social
+- Nombre
+- Edad
+- Pasatiempos
+- ...
+]
+
+---
+
+# Algoritmos
+
+--
+- ### Indicaciones detalladas de como resolver, paso por paso, un problema.
+
+--
+- ### Especifican el orden en el que deben ejecutarse los pasos, así como las condiciones que deben cumplirse antes de cada paso.
+
+---
+
+# Algoritmos - ejemplo
+## Receta de cocina - [Arroz con pollo](https://www.recetascostarica.com/recetas/plato-principal/arroz-con-pollo-costarricense)
+
+--
+&lt;figure&gt;
+  &lt;img src="img/arroz-con-pollo.png" height="400" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;Fuente: &lt;a href="https://cookpad.com/cr/recetas/6014919-arroz-con-pollo-al-estilo-costarricense"&gt;Cookpad&lt;/a&gt;.&lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+---
+
+# Algoritmos - ejemplo
+## Obtener el valor máximo de una lista
+
+--
+#### lista = [29.6, -36.81, 31.85, 25.71, 90.2, 0.4]
+
+--
+Solo es posible comparar dos elementos de la lista a la vez, para determinar si uno es mayor, menor o igual que otro.
+
+--
+#### Algoritmo
+
+--
+1. Se lee la lista (del teclado, de un archivo o de alguna otra fuente).
+
+--
+2. Si la lista está vacía, se despliega la hilera de texto "Lista vacía" y se concluye el proceso. Si no, se continúa con el paso 3.
+
+--
+3. Se designa el primer elemento de la lista como "máximo actual".
+
+--
+4. Se recorre la lista y se compara cada uno de los elementos con el máximo actual.
+
+--
+5. Si un elemento comparado es mayor que el máximo actual, entonces pasa a ser el nuevo máximo actual.
+
+--
+4. El valor máximo de la lista es el máximo actual, cuando termina de recorrerse la lista.
+
+---
+
+# Algoritmos - ejemplo
+## Obtener el valor máximo de una lista (continuación)
+
+--
+### Ejecución del algoritmo
+
+--
+&lt;span style="color:green";&gt;elemento en verde = máximo actual&lt;/span&gt;  
+&lt;span style="color:red";&gt;elemento en rojo  = elemento que está siendo comparado&lt;/span&gt;
+&lt;p&gt;
+
+--
+[&lt;span style="color:green;"&gt;29.6&lt;/span&gt;, &lt;span style="color:red;"&gt;-36.81&lt;/span&gt;, 31.85, 25.71, 90.2, 0.4]  
+&lt;p&gt;
+
+--
+[&lt;span style="color:green;"&gt;29.6&lt;/span&gt;, -36.81, &lt;span style="color:red;"&gt;31.85&lt;/span&gt;, 25.71, 90.2, 0.4]  
+&lt;p&gt;
+
+--
+[29.6, -36.81, &lt;span style="color:green;"&gt;31.85&lt;/span&gt;, &lt;span style="color:red;"&gt;25.71&lt;/span&gt;, 90.2, 0.4]  
+&lt;p&gt;
+
+--
+[29.6, -36.81, &lt;span style="color:green;"&gt;31.85&lt;/span&gt;, 25.71, &lt;span style="color:red;"&gt;90.2&lt;/span&gt;, 0.4]  
+&lt;p&gt;
+
+--
+[29.6, -36.81, 31.85, 25.71, &lt;span style="color:green;"&gt;90.2&lt;/span&gt;, &lt;span style="color:red;"&gt;0.4&lt;/span&gt;]  
+&lt;p&gt;
+
+--
+[29.6, -36.81, 31.85, 25.71, &lt;span style="color:green;"&gt;90.2&lt;/span&gt;, 0.4]  
+&lt;p&gt;
+
+--
+### Valor máximo = &lt;span style="color:green;"&gt;90.2&lt;/span&gt;
+
+---
+
+# Algoritmos - diagramas de flujo
+
+--
+.pull-left[
+- ### Los [diagramas de flujo](https://es.wikipedia.org/wiki/Diagrama_de_flujo) son representaciones diagramáticas de un algoritmo.
+- ### Representan los pasos del algoritmo mediante [símbolos](https://es.wikipedia.org/wiki/Diagrama_de_flujo#Simbolog%C3%ADa_y_significado) y su orden de ejecución mediante flechas.
+- ### Por convención, se leen de arriba hacia abajo o de izquierda a derecha.
+]
+
+--
+.pull-right[
+#### Ejemplo: obtener el máximo de una lista
+&lt;figure&gt;
+  &lt;img src="img/diagrama-flujo-valor-maximo.png" /&gt;
+&lt;/figure&gt;
+]
+
+---
+
+# Algoritmos - pseudocódigo
+
+--
+.pull-left[
+- ### El [pseudocódigo](https://es.wikipedia.org/wiki/Pseudoc%C3%B3digo) es una descripción textual y en lenguaje natural de un algoritmo.
+- ### Su estructura se asemeja a la de un lenguaje de programación, pero está diseñado para que ser comprendido por personas, no para ser ejecutado por computadoras.
+]
+
+--
+.pull-right[
+#### Ejemplo: obtener el máximo de una lista
+```r
+LISTA &lt;- Leer()
+si (Vacia(LISTA)) {
+  Desplegar("Lista vacía")
+} si no {
+  MAX &lt;- LISTA[1]
+  I &lt;- 1
+  mientras (I &lt;= Longitud(LISTA)) {
+    ITEM &lt;- LISTA[I]
+    si (ITEM &gt; MAX) {
+      MAX &lt;- ITEM
+    }
+    I &lt;- I + 1
+  }
+  Desplegar(MAX)
+}
+```
+]
+
+---
+
+# Algoritmos - implementación en [R](https://www.r-project.org/)
+
+```r
+# Obtener el valor máximo de una lista
+
+lista &lt;- c(29.6, -36.81, 31.85, 25.71, 90.2, 0.4)
+cat("Lista de entrada: ", lista, "\n")
+
+if (length(lista) == 0) {
+  cat("La lista está vacía", "\n")
+} else {
+  max &lt;- lista[1]
+  i &lt;- 1
+  while (i &lt;= length(lista)) {
+    if (lista[i] &gt; max) {
+      max &lt;- lista[i]
+    }
+    i &lt;- i + 1
+  }
+  
+  cat("Valor máximo de la lista: ", max, "\n")
+}
+```
+&lt;small&gt;
+  [Archivo con código fuente en R](https://github.com/gf0604-procesamientodatosgeograficos/2021i-leccion-01-introduccion-pensamiento-computacional/blob/master/valor-maximo-lista/valor-maximo-lista.R)
+&lt;/small&gt;
+
+---
+
+# Algoritmos - implementación en [Python](https://www.python.org/)
+
+```python
+# Obtener el valor máximo de una lista
+
+lista = [29.6, -36.81, 31.85, 25.71, 90.2, 0.4]
+print("Lista de entrada: ", lista)
+
+if (len(lista) == 0):
+    print("La lista está vacía")
+else:
+    max = lista[0]
+    i = 0
+    while (i &lt; len(lista)):
+        if (lista[i] &gt; max):
+            max = lista[i]
+        i = i + 1
+        
+    print("Valor máximo de la lista:", max)  
+```
+&lt;small&gt;
+  [Archivo con código fuente en Python](https://github.com/gf0604-procesamientodatosgeograficos/2021i-leccion-01-introduccion-pensamiento-computacional/blob/master/valor-maximo-lista/valor-maximo-lista.py)
+&lt;/small&gt;
+
+---
+
+# Entrada -&gt; Procesamiento -&gt; Salida
+
+--
+Este patrón describe el flujo de trabajo básico de cualquier algoritmo o programa.
+
+&lt;br&gt;&lt;br&gt;
+&lt;figure&gt;
+  &lt;img src="img/entrada-procesamiento-salida.png" /&gt;
+&lt;/figure&gt;
+
+---
+
+# Computadoras digitales binarias
+
+.pull-left[
+- Las computadoras modernas están construídas con base en [circuitos integrados (CI)](https://es.wikipedia.org/wiki/Circuito_integrado), también llamados *chips* o *microchips*.
+
+- Los CI procesan [información digital](https://es.wikipedia.org/wiki/Se%C3%B1al_digital) (que usa valores discretos), la cual generalmente es binaria (i.e. de dos valores).
+
+- Los CI de una computadora procesan dos estados correspondientes a **dos niveles de tensión eléctrica: alto y bajo**. Estos estados se representan con **0 y 1**. Esto facilita la aplicación de la [lógica binaria](https://es.wikipedia.org/wiki/L%C3%B3gica_binaria) y de la [aritmética binaria](https://es.wikipedia.org/wiki/Sistema_binario).
+]
+
+.pull-right[
+&lt;figure&gt;
+  &lt;img src="img/chip-intel.jpg" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;
+      Imagen de &lt;a href="https://unsplash.com/@slavudin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Slejven Djurakovic&lt;/a&gt; disponible en &lt;a href="https://unsplash.com/s/photos/chip?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;.
+    &lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src="img/reloj-digital.jpg" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;
+      Imagen de &lt;a href="https://unsplash.com/@yasin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Yasin Hasan&lt;/a&gt; disponible en &lt;a href="https://unsplash.com/s/photos/alarm-clock-digital?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;.
+    &lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+---
+
+# Historia de la computadora
+
+--
+### Durante el siglo XVII, varios matemáticos construyeron [calculadoras mecánicas](https://es.wikipedia.org/wiki/Pascalina) capaces de sumar, restar, multiplicar y dividir.
+
+--
+### En la primera mitad del siglo XIX, **Charles Babbage** diseñó la [máquina analítica](https://es.wikipedia.org/wiki/M%C3%A1quina_anal%C3%ADtica), considerada la primera computadora programable.
+
+--
+### A mediados del siglo XIX, **George Boole** introdujo el [álgebra booleana](https://es.wikipedia.org/wiki/%C3%81lgebra_de_Boole), la cual trata sobre las operaciones (ej. AND, OR, NOT) en valores lógicos (Verdadero o Falso).
+
+--
+### En la primera mitad del XX, **Claude Shannon** demostró como el álgebra booleana podía ser aplicada al diseño de [circuitos digitales](https://es.wikipedia.org/wiki/Circuito_digital).
+
+---
+
+# La máquina de Turing
+
+--
+- ### Durante el período entre las guerras mundiales, **Allan Turing** desarrolló la [máquina de Turing](https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing), un dispositivo teórico que manipula símbolos de una cinta de acuerdo con una tabla de reglas.
+
+--
+- ### La máquina de Turing simula el funcionamiento de un algoritmo y los conceptos de **entrada, procesamiento y salida**.
+
+--
+- ### La mayoría de las computadoras modernas están basadas en el concepto de la máquina de Turing.
+
+---
+
+# Representación artística de la máquina de Turing
+
+--
+&lt;figure&gt;
+  &lt;img src="img/turing-machine.png" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;
+      Representación artística de una máquina de Turing. Imagen de &lt;a href="https://commons.wikimedia.org/wiki/File:Turing_Machine.png"&gt;Porao en Wikimedia&lt;/a&gt;.
+    &lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+---
+
+# Primeras computadoras electrónicas
+
+--
+- ### Con base en las ideas de Turing, las computadoras [Bombe](https://es.wikipedia.org/wiki/Bombe) y  [Colossus](https://es.wikipedia.org/wiki/Colossus) fueron construídas durante la II Guerra Mundial (1939 - 1945) en el Reino Unido para descifrar mensajes codificados. A pesar de que se consideran de las primeras computadoras digitales electrónicas programables, su programación se realizaba a través de componentes de *hardware*, como interruptores y enchufes, y no con un [programa almacenado](https://es.wikipedia.org/wiki/Computador_de_programa_almacenado).
+
+--
+- ### También durante la II Guerra Mundial, el ejército de Estados Unidos de América construyó [ENIAC (Electronic Numerical Integrator and Computer)](https://es.wikipedia.org/wiki/ENIAC) para calcular tablas de tiro de artillería. Es considerada por algunos como la primera computadora programable digital de propósito general. Era capaz de seguir el modelo de la máquina de Turing, por lo que era [Turing-completa](https://es.wikipedia.org/wiki/Turing_completo). 
+
+---
+
+# Primeras computadoras electrónicas
+
+.pull-left[
+&lt;figure&gt;
+  &lt;img src="img/colossus.jpg" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;
+      Computador Colossus operado por integrantes del &lt;em&gt;Women's Royal Naval Service (WRNS)&lt;/em&gt;. Imagen de &lt;a href="https://commons.wikimedia.org/wiki/File:Colossus.jpg"&gt;autor desconocido en Wikimedia&lt;/a&gt;.
+    &lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+.pull-righ[
+&lt;figure&gt;
+  &lt;img src="img/eniac01.jpg" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;
+      ENIAC programado por Glen Beck y Betty Snyder. Imagen del &lt;a href="https://commons.wikimedia.org/wiki/File:Eniac.jpg"&gt;Ejército de Estados Unidos en Wikimedia&lt;/a&gt;.
+    &lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+]
+
+---
+
+# La arquitectura de von Neumann
+
+--
+- ### En 1945, **John von Neumann** propuso un concepto conocido como **programa almacenado**, en el cual los datos y los programas se almacenan en una estructura llamada **memoria**, separada del hardware que ejecuta las instrucciones.
+
+--
+- ### Este modelo permite que las computadoras sean más fáciles de reprogramar y es conocido actualmente como [arquitectura de von Neumann](https://es.wikipedia.org/wiki/Arquitectura_de_Von_Neumann).
+
+---
+
+# Diagrama de la arquitectura de von Neumann
+
+--
+&lt;figure&gt;
+  &lt;img src="img/arquitectura-vonneumann.jpg" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;
+      Diagrama de la arquitectura de von Neumann. Imagen de &lt;a href="https://commons.wikimedia.org/wiki/File:Arquitecturaneumann.jpg"&gt;David Strigoi en Wikimedia&lt;/a&gt;.
+    &lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+---
+
+# Componentes de la arquitectura de von Neumann
+## Memoria principal
+
+--
+- ### Almacena las instrucciones de los programas y los datos que utilizan estos programas.
+
+--
+- ### Es común denominarla como RAM (*Random Access Memory*, Memoria de Acceso Aleatorio), lo que significa que toma el mismo tiempo acceder a cualquier posición de la memoria.
+
+--
+- ### Cada posición de memoria tiene una dirección a la que se hace referencia cuando se desea leer o escribir.
+
+---
+
+# Componentes de la arquitectura de von Neumann
+## Unidad central de procesamiento
+
+--
+- ### La Unidad Central de Procesamiento o CPU (*Central Processing Unit*) se encarga de ejecutar las instrucciones de los programas.
+
+--
+- ### Está compuesta por dos partes:
+  - #### La Unidad de Control: determina cuál es la siguiente instrucción a ejecutar. Contiene memorias temporales de alta velocidad y poca capacidad llamadas registros, para almacenar los operandos y el resultado de las instrucciones.
+  - #### La Unidad de Aritmética y Lógica o ALU (*Arithmetic and Logic Unit*): ejecuta las operaciones aritméticas y lógicas.
+  
+---
+
+# Componentes de la arquitectura de von Neumann
+## Sistemas de entrada y salida
+
+--
+- ### Permiten que la computadora interactúe con el usuario y, en general, con el mundo exterior.
+
+--
+- ### Algunos ejemplos son el teclado y el ratón, como sistemas de entrada, y la pantalla y la impresora, como sistemas de salida.
+
+---
+
+# Código binario
+
+--
+- ### Los CI de las computadoras usan voltajes bajos y altos para representar dos posibles valores de información: 0 y 1. Este es un sistema binario y cada dígito binario (0 o 1) se denomina *bit* (*binary digit*).
+
+--
+- ### Los bits se agrupan (por ejemplo, en [bytes = 8 bits](https://es.wikipedia.org/wiki/Byte)) para representar elementos de información más complejos, como números más grandes o carácteres de texto. Por ejemplo:
+  - El número decimal ```14``` se representa en binario como ```1110```:  
+```1110``` = ```2^3*1 + 2^2*1 + 2^1*1 + 2^0*0``` = ```8 + 4 + 2 + 0``` = ```14```
+  - La palabra ```bit``` se representa en [código ASCII](https://es.wikipedia.org/wiki/ASCII) como:  
+```01100010 01101001 01110100``` = ```bit```
+
+---
+
+# Lenguaje máquina
+
+--
+- ### El [lenguaje máquina](https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina) es un conjunto de instrucciones binarias interpretables por un CPU. Las instrucciones representan acciones a ser ejecutadas por la computadora. Cada CPU tiene su propio lenguaje máquina. 
+
+--
+- ### Un programa consiste de una secuencia de instrucciones en lenguaje máquina.
+
+--
+- ### Por ejemplo, la siguiente instrucción suma los contenidos de los registros 1 y 2 y almacena el resultado en el registro 6 de un CPU:
+
+&lt;figure&gt;
+  &lt;img src="img/suma-binaria.png" /&gt;
+  &lt;figcaption&gt;
+    &lt;small&gt;
+      Instrucción de suma en lenguaje máquina. Fuente &lt;a href="https://en.wikipedia.org/wiki/Machine_code"&gt;Machine code - Wikipedia&lt;/a&gt;.
+    &lt;/small&gt;
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+---
+
+# Lenguajes de programación
+
+--
+- ### Debido a que programar una computadora en lenguaje máquina es excesivamente lento y complicado, en la década de 1950 comenzaron a crearse lenguajes de programación que, en lugar de unos y ceros, consisten de instrucciones formadas por palabras, usualmente en idioma inglés. Por ejemplo, el siguiente programa en lenguaje [C](https://www.iso.org/standard/74528.html) imprime la hilera de texto ["hello, world\n"](http://helloworldcollection.de/):
+
+&lt;figure&gt;
+  &lt;img src="img/hello-world.png" /&gt;
+&lt;/figure&gt;
+
+--
+- ### Existe una gran [variedad de lenguajes de programación](https://en.wikipedia.org/wiki/List_of_programming_languages) que han sido creados con diversos fines: científicos, comerciales, educacionales, etc.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
