@@ -405,9 +405,6 @@ if (length(lista) == 0) {
   cat("Valor máximo de la lista: ", max, "\n")
 }
 ```
-<small>
-  [Archivo con código fuente en R](https://github.com/gf0604-procesamientodatosgeograficos/2021i-leccion-01-introduccion-pensamiento-computacional/blob/master/valor-maximo-lista/valor-maximo-lista.R)
-</small>
 
 ---
 
@@ -431,9 +428,6 @@ else:
         
     print("Valor máximo de la lista:", max)  
 ```
-<small>
-  [Archivo con código fuente en Python](https://github.com/gf0604-procesamientodatosgeograficos/2021i-leccion-01-introduccion-pensamiento-computacional/blob/master/valor-maximo-lista/valor-maximo-lista.py)
-</small>
 
 ---
 
